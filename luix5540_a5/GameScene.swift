@@ -85,94 +85,33 @@ class GameScene: SKScene {
 //
 //    override func update(_ currentTime: TimeInterval) {
 //        // Called before each frame is rendered
-//    }    
-    var frog = SKSpriteNode()
+//    }
     
-    var left = SKSpriteNode()
-    var right = SKSpriteNode()
-    var up = SKSpriteNode()
-    var down = SKSpriteNode()
+    var playButton : SKSpriteNode?
     
-    var start = SKSpriteNode()
-    var finish = SKSpriteNode()
-        
     override func didMove(to view: SKView) {
-        /* Setup your scene here */
         self.backgroundColor = UIColor.white
         
-        finish = SKSpriteNode(imageNamed: "rect")
-        finish.name = "finishLine"
-        finish.size = CGSize(width: 2000, height: 200)
-        finish.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
-        self.addChild(finish)
+        playButton = SKSpriteNode(imageNamed: "frog")
+        playButton!.name="playButton"
+        playButton!.position = CGPoint(x:self.frame.midX, y:self.frame.midY);
+        self.addChild(playButton!)
         
-        start = SKSpriteNode(imageNamed: "rect")
-        start.name = "startLine"
-        start.size = CGSize(width: 2000, height: 200)
-        start.position = CGPoint(x: self.frame.width/2, y: finish.position.y-725)
-        self.addChild(start)
-        
-        left = SKSpriteNode(imageNamed: "left")
-        left.name = "leftButton"
-        left.size = CGSize(width: 200, height: 200)
-        left.position = CGPoint(x: left.frame.width*2, y: left.frame.width/2)
-        self.addChild(left)
-
-        right = SKSpriteNode(imageNamed: "right")
-        right.name = "rightButton"
-        right.size = CGSize(width: 200, height: 200)
-        right.position = CGPoint(x: self.frame.width-right.frame.width*2, y: right.frame.width/2)
-        self.addChild(right)
-
-        frog = SKSpriteNode(imageNamed: "frog")
-        frog.size = CGSize(width: 200, height: 200)
-        frog.position = CGPoint(x: self.frame.width/2, y: frog.frame.width/2+right.frame.width)
-        self.addChild(frog)
-
-        up = SKSpriteNode(imageNamed: "up")
-        up.name = "upButton"
-        up.size = CGSize(width: 200, height: 200)
-        up.position = CGPoint(x: self.frame.width-right.frame.width*3, y: right.frame.width/2)
-        self.addChild(up)
-
-        down = SKSpriteNode(imageNamed: "down")
-        down.name = "downButton"
-        down.size = CGSize(width: 200, height: 200)
-        down.position = CGPoint(x: left.frame.width*3, y: left.frame.width/2)
-        self.addChild(down)
+//        let label = SKLabelNode(fontNamed: "Courier")
+//        label.fontColor = SKColor.darkGray
+//        label.fontSize = 30
+//        label.text = "PLAY"
+//        label.position =  CGPoint(x:self.frame.midX, y:self.frame.midY+100);
+//        self.addChild(label)
     }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch: AnyObject in touches {
             let location = touch.location(in: self)
             let theNode = self.atPoint(location)
-            if theNode.name == right.name {
-                print("right button pressed")
-                frog.position = CGPoint(x: frog.position.x + 50, y: frog.position.y)
-            } else if theNode.name == left.name {
-                print("left button pressed")
-                frog.position = CGPoint(x: frog.position.x - 50, y: frog.position.y)
-            } else if theNode.name == up.name {
-                print("up button pressed")
-                print(frog.position.y)
-                print(finish.position.y)
-                if frog.position.y <= 1000 {
-                    frog.position = CGPoint(x: frog.position.x, y: frog.position.y + 50)
-                    if frog.position.y > 1000 {
-                        //transition to "you win"
-                        print("win")
-                        
-                    }
-                }
-            } else if theNode.name == down.name {
-                print("down button pressed")
-                if frog.position.y > up.frame.width*1.5 {
-                    frog.position = CGPoint(x: frog.position.x, y: frog.position.y - 50)
-                }  else if frog.position.y == finish.position.y {
-                    //transition to "you win"
-                    print("win")
-                }
-                
+            if theNode.name == playButton!.name {
+                let transition = SKTransition.moveIn(with: SKTransitionDirection.left, duration: 2)
+                let frogScene = FrogScene(size: self.size)
+                self.view?.presentScene(frogScene, transition: transition)
             }
         }
     }
