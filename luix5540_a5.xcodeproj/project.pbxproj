@@ -20,6 +20,8 @@
 		3F5389AF242082BC00AD971B /* WinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5389AE242082BC00AD971B /* WinScene.swift */; };
 		3F5389B124208C2700AD971B /* LoseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5389B024208C2700AD971B /* LoseScene.swift */; };
 		3F5389B32420911200AD971B /* FrogScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5389B22420911200AD971B /* FrogScene.swift */; };
+		3F5389B52425887200AD971B /* inGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3F5389B42425887100AD971B /* inGame.wav */; };
+		3F5389B72426514000AD971B /* carSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F5389B62426513F00AD971B /* carSound.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		3F5389AE242082BC00AD971B /* WinScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinScene.swift; sourceTree = "<group>"; };
 		3F5389B024208C2700AD971B /* LoseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseScene.swift; sourceTree = "<group>"; };
 		3F5389B22420911200AD971B /* FrogScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrogScene.swift; sourceTree = "<group>"; };
+		3F5389B42425887100AD971B /* inGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = inGame.wav; path = ../../inGame.wav; sourceTree = "<group>"; };
+		3F5389B62426513F00AD971B /* carSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = carSound.mp3; path = ../../carSound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,8 @@
 			children = (
 				3F538978241B090F00AD971B /* AppDelegate.swift */,
 				3F53897A241B090F00AD971B /* GameScene.sks */,
+				3F5389B42425887100AD971B /* inGame.wav */,
+				3F5389B62426513F00AD971B /* carSound.mp3 */,
 				3F53897C241B090F00AD971B /* Actions.sks */,
 				3F53897E241B090F00AD971B /* GameScene.swift */,
 				3F538980241B090F00AD971B /* GameViewController.swift */,
@@ -249,7 +255,9 @@
 			files = (
 				3F538984241B090F00AD971B /* Main.storyboard in Resources */,
 				3F53897B241B090F00AD971B /* GameScene.sks in Resources */,
+				3F5389B72426514000AD971B /* carSound.mp3 in Resources */,
 				3F538986241B091500AD971B /* Assets.xcassets in Resources */,
+				3F5389B52425887200AD971B /* inGame.wav in Resources */,
 				3F538989241B091500AD971B /* LaunchScreen.storyboard in Resources */,
 				3F53897D241B090F00AD971B /* Actions.sks in Resources */,
 			);

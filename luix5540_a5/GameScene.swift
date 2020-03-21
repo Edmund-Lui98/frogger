@@ -87,31 +87,63 @@ class GameScene: SKScene {
 //        // Called before each frame is rendered
 //    }
     
-    var playButton : SKSpriteNode?
+    var frog : SKSpriteNode?
+    var playButton : SKLabelNode?
+    let backgroundMusic = SKAudioNode(fileNamed: "inGame.wav")
+
     
     override func didMove(to view: SKView) {
         self.backgroundColor = UIColor.white
         
-        playButton = SKSpriteNode(imageNamed: "frog")
-        playButton!.name="playButton"
-        playButton!.position = CGPoint(x:self.frame.midX, y:self.frame.midY);
-        self.addChild(playButton!)
+        frog = SKSpriteNode(imageNamed: "frog")
+        frog!.size = CGSize(width: 300, height:300)
+        frog!.position = CGPoint(x:self.frame.midX, y:self.frame.midY+300);
+        self.addChild(frog!)
         
-//        let label = SKLabelNode(fontNamed: "Courier")
-//        label.fontColor = SKColor.darkGray
-//        label.fontSize = 30
-//        label.text = "PLAY"
-//        label.position =  CGPoint(x:self.frame.midX, y:self.frame.midY+100);
-//        self.addChild(label)
+        let playButton = SKLabelNode(fontNamed: "Courier")
+        playButton.fontColor = SKColor.darkGray
+        playButton.fontSize = 200
+        playButton.name="playButton"
+        playButton.text = "PLAY"
+        playButton.position =  CGPoint(x:self.frame.midX, y:self.frame.midY);
+        self.addChild(playButton)
+        
+        let playMusic = SKLabelNode(fontNamed: "Courier")
+        playMusic.fontColor = SKColor.darkGray
+        playMusic.fontSize = 100
+        playMusic.name="playMusic"
+        playMusic.text = "Play music"
+        playMusic.position =  CGPoint(x:self.frame.midX, y:self.frame.midY-300);
+        self.addChild(playMusic)
+        
+        let stopMusic = SKLabelNode(fontNamed: "Courier")
+        stopMusic.fontColor = SKColor.darkGray
+        stopMusic.fontSize = 100
+        stopMusic.name="stopMusic"
+        stopMusic.text = "Stop music"
+        stopMusic.position =  CGPoint(x:self.frame.midX, y: playMusic.position.y-100);
+        self.addChild(stopMusic)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch: AnyObject in touches {
             let location = touch.location(in: self)
             let theNode = self.atPoint(location)
-            if theNode.name == playButton!.name {
+            if theNode.name == "playButton" {
+                print("play button pressed")
                 let transition = SKTransition.moveIn(with: SKTransitionDirection.left, duration: 2)
                 let frogScene = FrogScene(size: self.size)
                 self.view?.presentScene(frogScene, transition: transition)
+            } else if theNode.name == "playMusic" {
+                print("play music button pressed")
+                backgroundMusic.autoplayLooped = true
+                addChild(backgroundMusic)
+                //run(SKAction.playSoundFileNamed("inGame.wav", waitForCompletion: false), withKey: "backgroundMusic")
+                
+                //run(SKAction.playSoundFileNamed("inGame.wav", waitForCompletion: false))
+            } else if theNode.name == "stopMusic" {
+                print("stop music button pressed")
+                backgroundMusic.removeFromParent()
+                
             }
         }
     }
