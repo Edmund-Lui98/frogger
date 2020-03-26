@@ -110,20 +110,25 @@ class FrogScene: SKScene,  SKPhysicsContactDelegate {
         }
         
         if body1.categoryBitMask == PhysicsCategories.frog && body2.categoryBitMask == PhysicsCategories.car {
-            spawnDead(spawnPosition: body1.node!.position)
+            //run(SKAction.playSoundFileNamed("deadSound.mp3", waitForCompletion: false))
             body1.node?.removeFromParent()
+            spawnDead(spawnPosition: body1.node!.position)
             
-            let loseScene = LoseScene(size: self.size)
-            let transition = SKTransition.doorway(withDuration: 1.0)
-            self.view?.presentScene(loseScene, transition: transition)
+            
+
         }
     } //didBeginContact
     
     func spawnDead(spawnPosition: CGPoint) {
+        run(SKAction.playSoundFileNamed("deadSound.mp3", waitForCompletion: false))
         let dead = SKSpriteNode(imageNamed: "dead")
         dead.size = CGSize(width: frog.size.width, height: frog.size.height)
         dead.position = spawnPosition
         self.addChild(dead)
+        
+        let loseScene = LoseScene(size: self.size)
+        let transition = SKTransition.doorway(withDuration: 1.0)
+        self.view?.presentScene(loseScene, transition: transition)
         
     }
     

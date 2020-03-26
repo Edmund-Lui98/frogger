@@ -89,6 +89,7 @@ class GameScene: SKScene {
     
     var frog : SKSpriteNode?
     var playButton : SKLabelNode?
+    //let backgroundMusic = SKAudioNode(fileNamed: "inGame.wav")
     let backgroundMusic = SKAudioNode(fileNamed: "inGame.wav")
 
     
